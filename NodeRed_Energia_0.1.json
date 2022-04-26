@@ -1,0 +1,1165 @@
+[
+    {
+        "id": "55deb5bc33f738bf",
+        "type": "tab",
+        "label": "Fronius",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ac11782cb954b03e",
+        "type": "tab",
+        "label": "DSMR",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f4b26b40125d503e",
+        "type": "tab",
+        "label": "SerialNro",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "817c0e95d6ca5770",
+        "type": "tab",
+        "label": "Kostal_Invertteri",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7b5126139c86498e",
+        "type": "smartmeter-connection",
+        "sourcetype": "serial",
+        "serialport": "/dev/ttyUSB1",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "httphost": "localhost",
+        "httpport": "80",
+        "tcphost": "localhost",
+        "tcpport": "502",
+        "filepath": "/dev/null"
+    },
+    {
+        "id": "3d489457972d16b3",
+        "type": "smartmeter-connection",
+        "sourcetype": "serial",
+        "serialport": "/dev/ttyUSB2",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "httphost": "localhost",
+        "httpport": "80",
+        "tcphost": "localhost",
+        "tcpport": "502",
+        "filepath": "/dev/null"
+    },
+    {
+        "id": "e444a01e492cee5d",
+        "type": "smartmeter-connection",
+        "sourcetype": "serial",
+        "serialport": "/dev/ttyUSB3",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "httphost": "localhost",
+        "httpport": "80",
+        "tcphost": "localhost",
+        "tcpport": "502",
+        "filepath": "/dev/null"
+    },
+    {
+        "id": "ba8b5547f323b2e9",
+        "type": "smartmeter-connection",
+        "sourcetype": "serial",
+        "serialport": "/dev/ttyUSB5",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "httphost": "localhost",
+        "httpport": "80",
+        "tcphost": "localhost",
+        "tcpport": "502",
+        "filepath": "/dev/null"
+    },
+    {
+        "id": "5603e8bb8f1a9ed4",
+        "type": "smartmeter-connection",
+        "sourcetype": "serial",
+        "serialport": "/dev/ttyUSB4",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "httphost": "localhost",
+        "httpport": "80",
+        "tcphost": "localhost",
+        "tcpport": "502",
+        "filepath": "/dev/null"
+    },
+    {
+        "id": "2595815b99126245",
+        "type": "smartmeter-connection",
+        "sourcetype": "serial",
+        "serialport": "/dev/ttyUSB6",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "httphost": "localhost",
+        "httpport": "80",
+        "tcphost": "localhost",
+        "tcpport": "502",
+        "filepath": "/dev/null"
+    },
+    {
+        "id": "28c6c79fe2d860e1",
+        "type": "smartmeter-connection",
+        "sourcetype": "serial",
+        "serialport": "/dev/ttyUSB0",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "httphost": "localhost",
+        "httpport": "80",
+        "tcphost": "localhost",
+        "tcpport": "502",
+        "filepath": "/dev/null"
+    },
+    {
+        "id": "869a96cb06147851",
+        "type": "influxdb out",
+        "z": "55deb5bc33f738bf",
+        "influxdb": "",
+        "name": "InfluxDB",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 780,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "318aa80ea789bab2",
+        "type": "inject",
+        "z": "55deb5bc33f738bf",
+        "d": true,
+        "name": "Fronius MeterData",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 140,
+        "wires": [
+            [
+                "473623e4c8abef17"
+            ]
+        ]
+    },
+    {
+        "id": "473623e4c8abef17",
+        "type": "http request",
+        "z": "55deb5bc33f738bf",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "192.168.10.101/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 350,
+        "y": 140,
+        "wires": [
+            [
+                "25500aa52689dec7"
+            ]
+        ]
+    },
+    {
+        "id": "6e3697779029f3b7",
+        "type": "debug",
+        "z": "55deb5bc33f738bf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "25500aa52689dec7",
+        "type": "json",
+        "z": "55deb5bc33f738bf",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 490,
+        "y": 140,
+        "wires": [
+            [
+                "6fcb585826affbe6"
+            ]
+        ]
+    },
+    {
+        "id": "6fcb585826affbe6",
+        "type": "function",
+        "z": "55deb5bc33f738bf",
+        "name": "Parseri",
+        "func": "// Parsitaan halutut tiedot viestistä\nvar kulu=msg.payload.Body.Data.EnergyReal_WAC_Sum_Consumed;\nvar tuote=msg.payload.Body.Data.EnergyReal_WAC_Sum_Produced;\nvar summa=msg.payload.Body.Data.PowerReal_P_Sum;\n\nmsg.payload = [{\n    EnergyReal_WAC_Sum_Consumed: kulu,  // Kulutetun energian kumulatiivinen summa\n    EnergyReal_WAC_Sum_Produced: tuote, // Tuotetun energian kumulatiivinen summa\n    PowerReal_P_Sum: summa,             // Tuotanto/kulutussumma: negatiivinen=myydää, positiivinen=ostetaan energiaa\n    time: new Date()\n},\n{\n    deviceId: \"FroniusKuittinen\"\n}];\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 140,
+        "wires": [
+            [
+                "869a96cb06147851"
+            ]
+        ],
+        "info": "var times = new Date().toLocaleDateString({ weekday:\"long\", year:\"numeric\", month:\"short\", day:\"numeric\", hours:\"numeric\", minutes:\"numeric\"});"
+    },
+    {
+        "id": "a9f1aee1b724aadd",
+        "type": "http request",
+        "z": "55deb5bc33f738bf",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "192.168.10.101/solar_api/v1/GetInverterRealtimeData.cgi?Scope=System&DataCollection=CommonInverterData",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 350,
+        "y": 240,
+        "wires": [
+            [
+                "9f4d1a3890ba5428"
+            ]
+        ]
+    },
+    {
+        "id": "85a7d724c2c627ab",
+        "type": "inject",
+        "z": "55deb5bc33f738bf",
+        "d": true,
+        "name": "Fronius_Teho",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "a9f1aee1b724aadd"
+            ]
+        ]
+    },
+    {
+        "id": "9f4d1a3890ba5428",
+        "type": "json",
+        "z": "55deb5bc33f738bf",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 490,
+        "y": 240,
+        "wires": [
+            [
+                "195941df8d965408"
+            ]
+        ]
+    },
+    {
+        "id": "195941df8d965408",
+        "type": "function",
+        "z": "55deb5bc33f738bf",
+        "name": "Parseri",
+        "func": "//Parsitaan halutut tiedot viestistä\nvar teho=msg.payload.Body.Data.PAC.Values[1];                   // Tuotantoteho W\nvar tuotantoTotal=msg.payload.Body.Data.TOTAL_ENERGY.Values[1]; // Tuotetun energian kumulatiivinen summa Wh\n\n\nmsg.payload = [{\n    Tuotantoteho: teho,\n    TuotantoTotal: tuotantoTotal,\n    time: new Date()\n},\n{\n    deviceId: \"FroniusKuittinen\"\n}];\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 240,
+        "wires": [
+            [
+                "869a96cb06147851"
+            ]
+        ],
+        "info": "var times = new Date().toLocaleDateString({ weekday:\"long\", year:\"numeric\", month:\"short\", day:\"numeric\", hours:\"numeric\", minutes:\"numeric\"});"
+    },
+    {
+        "id": "97cfdc19828c5532",
+        "type": "comment",
+        "z": "55deb5bc33f738bf",
+        "name": "SmartMeter",
+        "info": "Hakee Fronius Smart meter:in \nkautta tietoja paneeleiden tuotannosta\nja kiinteistön kulutuksesta.",
+        "x": 130,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "6d0db69dbdc145f7",
+        "type": "comment",
+        "z": "55deb5bc33f738bf",
+        "name": "Invertteri",
+        "info": "Tuotantoteho ja kokonaistuotanto",
+        "x": 120,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1d30aebbcf8045d5",
+        "type": "comment",
+        "z": "55deb5bc33f738bf",
+        "name": "Fronius Solar API V1",
+        "info": "https://www.fronius.com/en/solar-energy/installers-partners/technical-data/all-products/system-monitoring/open-interfaces/fronius-solar-api-json-\n\n\nhttps://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwicwc6SvIn3AhXilosKHRaQAsoQFnoECBUQAQ&url=https%3A%2F%2Fwww.fronius.com%2F~%2Fdownloads%2FSolar%2520Energy%2FOperating%2520Instructions%2F42%252C0410%252C2012.pdf&usg=AOvVaw01uOKq3ZB2qVDb-SDr9IoO\n\n",
+        "x": 150,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "2652c828d8a82e2a",
+        "type": "debug",
+        "z": "ac11782cb954b03e",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "ece4c96a672c4440",
+        "type": "smartmeter",
+        "z": "ac11782cb954b03e",
+        "name": "USB0",
+        "datasource": "28c6c79fe2d860e1",
+        "protocol": "D0Protocol",
+        "transport": "SerialResponseTransport",
+        "requestInterval": "1",
+        "d0WakeupCharacters": "",
+        "d0SignOnMessage": "",
+        "d0BaudrateChangeoverOverwrite": "",
+        "protocolSmlIgnoreInvalidCRC": true,
+        "debugging": false,
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "d6d4b27b7c7ed64a"
+            ]
+        ]
+    },
+    {
+        "id": "d8f0006b87719fe9",
+        "type": "influxdb out",
+        "z": "ac11782cb954b03e",
+        "influxdb": "",
+        "name": "Kamstrupit Influxiin",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 600,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "d6d4b27b7c7ed64a",
+        "type": "function",
+        "z": "ac11782cb954b03e",
+        "name": "Parsin_0",
+        "func": "// Parsitaan viestistä käytettävät arvot\nvar kokonaisKulutus = msg.payload[\"1-0:1.8.0\"].values[0].value\nvar kokonaisYlijaama = msg.payload[\"1-0:2.8.0\"].values[0].value\nvar kulutusTeho = msg.payload[\"1-0:1.7.0\"].values[0].value\nvar YlijaamaTeho = msg.payload[\"1-0:2.7.0\"].values[0].value\n\n// Parsitaan viestistä sen aikaleima, ei käytetä koska ongelmana on kesä/talviaika\n// var timeRaw = msg.payload[\"0-0:1.0.0\"].values[0].value\n// timeTemp = timeRaw.slice(0,-1).match(/.{2}/g)\n// timeStamp = \"20\"+timeTemp[0]+\"-\"+timeTemp[1]+\"-\"+timeTemp[2]+\"T\"+timeTemp[3]+\":\"+timeTemp[4]+\":\"+timeTemp[5]\n\n// Välitetään parsitut arvot eteenpäin\nmsg.payload = [{\n        kokonaisKulutus: kokonaisKulutus,\n    \tkokonaisYlijaama: kokonaisYlijaama,\n\t    kulutusTeho: kulutusTeho,\n\t    YlijaamaTeho: YlijaamaTeho,\n\t    // time: Date.parse(timeStamp)\n        time: Date.now() // Käytetään järjestelmän aikaa\n},\n{\n    deviceId: global.get('USB0')|| 0 // jos arvoa ei ole saatavilla, sijoitetaan 0\n}];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "d8f0006b87719fe9",
+                "2652c828d8a82e2a"
+            ]
+        ]
+    },
+    {
+        "id": "56b5bb09e6d4fef7",
+        "type": "smartmeter",
+        "z": "ac11782cb954b03e",
+        "name": "USB1",
+        "datasource": "7b5126139c86498e",
+        "protocol": "D0Protocol",
+        "transport": "SerialResponseTransport",
+        "requestInterval": "1",
+        "d0WakeupCharacters": "",
+        "d0SignOnMessage": "",
+        "d0BaudrateChangeoverOverwrite": "",
+        "protocolSmlIgnoreInvalidCRC": true,
+        "debugging": false,
+        "x": 180,
+        "y": 220,
+        "wires": [
+            [
+                "272ffd6de33df05c"
+            ]
+        ]
+    },
+    {
+        "id": "272ffd6de33df05c",
+        "type": "function",
+        "z": "ac11782cb954b03e",
+        "name": "Parsin_1",
+        "func": "var timeRaw = msg.payload[\"0-0:1.0.0\"].values[0].value\nvar kokonaisKulutus = msg.payload[\"1-0:1.8.0\"].values[0].value\nvar kokonaisYlijaama = msg.payload[\"1-0:2.8.0\"].values[0].value\nvar kulutusTeho = msg.payload[\"1-0:1.7.0\"].values[0].value\nvar YlijaamaTeho = msg.payload[\"1-0:2.7.0\"].values[0].value\n\n// Parsitaan viestistä sen aikaleima, ongelmana on kesä/talviaika\n//timeTemp = timeRaw.slice(0,-1).match(/.{2}/g)\n//timeStamp = \"20\"+timeTemp[0]+\"-\"+timeTemp[1]+\"-\"+timeTemp[2]+\"T\"+timeTemp[3]+\":\"+timeTemp[4]+\":\"+timeTemp[5]\n\nmsg.payload = [{\n        kokonaisKulutus: kokonaisKulutus,\n    \tkokonaisYlijaama: kokonaisYlijaama,\n\t    kulutusTeho: kulutusTeho,\n\t    YlijaamaTeho: YlijaamaTeho,\n\t    // time: Date.parse(timeStamp)\n        time: Date.now() // Käytetään järjestelmän aikaa\n},\n{\n    deviceId:  global.get('USB1')|| 0\n    \n}];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 220,
+        "wires": [
+            [
+                "d8f0006b87719fe9",
+                "2652c828d8a82e2a"
+            ]
+        ]
+    },
+    {
+        "id": "8b5f9ef7d2d3e222",
+        "type": "smartmeter",
+        "z": "ac11782cb954b03e",
+        "name": "USB2",
+        "datasource": "3d489457972d16b3",
+        "protocol": "D0Protocol",
+        "transport": "SerialResponseTransport",
+        "requestInterval": "1",
+        "d0WakeupCharacters": "",
+        "d0SignOnMessage": "",
+        "d0BaudrateChangeoverOverwrite": "",
+        "protocolSmlIgnoreInvalidCRC": true,
+        "debugging": false,
+        "x": 180,
+        "y": 280,
+        "wires": [
+            [
+                "2ea80ab2eaaf6321"
+            ]
+        ]
+    },
+    {
+        "id": "2ea80ab2eaaf6321",
+        "type": "function",
+        "z": "ac11782cb954b03e",
+        "name": "Parsin_02",
+        "func": "var timeRaw = msg.payload[\"0-0:1.0.0\"].values[0].value\nvar kokonaisKulutus = msg.payload[\"1-0:1.8.0\"].values[0].value\nvar kokonaisYlijaama = msg.payload[\"1-0:2.8.0\"].values[0].value\nvar kulutusTeho = msg.payload[\"1-0:1.7.0\"].values[0].value\nvar YlijaamaTeho = msg.payload[\"1-0:2.7.0\"].values[0].value\n\n// Parsitaan viestistä sen aikaleima, ongelmana on kesä/talviaika\n//timeTemp = timeRaw.slice(0,-1).match(/.{2}/g)\n//timeStamp = \"20\"+timeTemp[0]+\"-\"+timeTemp[1]+\"-\"+timeTemp[2]+\"T\"+timeTemp[3]+\":\"+timeTemp[4]+\":\"+timeTemp[5]\n\n\n\nmsg.payload = [{\n        kokonaisKulutus: kokonaisKulutus,\n    \tkokonaisYlijaama: kokonaisYlijaama,\n\t    kulutusTeho: kulutusTeho,\n\t    YlijaamaTeho: YlijaamaTeho,\n\t    // time: Date.parse(timeStamp)\n        time: Date.now() // Käytetään järjestelmän aikaa\n},\n{\n    deviceId:  global.get('USB2')|| 0\n    \n}];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 280,
+        "wires": [
+            [
+                "d8f0006b87719fe9",
+                "2652c828d8a82e2a"
+            ]
+        ]
+    },
+    {
+        "id": "0d41325960241d43",
+        "type": "smartmeter",
+        "z": "ac11782cb954b03e",
+        "name": "USB3",
+        "datasource": "e444a01e492cee5d",
+        "protocol": "D0Protocol",
+        "transport": "SerialResponseTransport",
+        "requestInterval": "1",
+        "d0WakeupCharacters": "",
+        "d0SignOnMessage": "",
+        "d0BaudrateChangeoverOverwrite": "",
+        "protocolSmlIgnoreInvalidCRC": true,
+        "debugging": false,
+        "x": 180,
+        "y": 340,
+        "wires": [
+            [
+                "d13322f9efc8fc82"
+            ]
+        ]
+    },
+    {
+        "id": "d13322f9efc8fc82",
+        "type": "function",
+        "z": "ac11782cb954b03e",
+        "name": "Parsin_03",
+        "func": "var timeRaw = msg.payload[\"0-0:1.0.0\"].values[0].value\nvar kokonaisKulutus = msg.payload[\"1-0:1.8.0\"].values[0].value\nvar kokonaisYlijaama = msg.payload[\"1-0:2.8.0\"].values[0].value\nvar kulutusTeho = msg.payload[\"1-0:1.7.0\"].values[0].value\nvar YlijaamaTeho = msg.payload[\"1-0:2.7.0\"].values[0].value\n\n// Parsitaan viestistä sen aikaleima, ongelmana on kesä/talviaika\n//timeTemp = timeRaw.slice(0,-1).match(/.{2}/g)\n//timeStamp = \"20\"+timeTemp[0]+\"-\"+timeTemp[1]+\"-\"+timeTemp[2]+\"T\"+timeTemp[3]+\":\"+timeTemp[4]+\":\"+timeTemp[5]\n\n\n\nmsg.payload = [{\n        kokonaisKulutus: kokonaisKulutus,\n    \tkokonaisYlijaama: kokonaisYlijaama,\n\t    kulutusTeho: kulutusTeho,\n\t    YlijaamaTeho: YlijaamaTeho,\n\t    // time: Date.parse(timeStamp)\n        time: Date.now() // Käytetään järjestelmän aikaa\n},\n{\n    deviceId:  global.get('USB3')|| 0\n    \n}];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 340,
+        "wires": [
+            [
+                "d8f0006b87719fe9",
+                "2652c828d8a82e2a"
+            ]
+        ]
+    },
+    {
+        "id": "c5826f9b1940ae32",
+        "type": "smartmeter",
+        "z": "ac11782cb954b03e",
+        "name": "USB4",
+        "datasource": "5603e8bb8f1a9ed4",
+        "protocol": "D0Protocol",
+        "transport": "SerialResponseTransport",
+        "requestInterval": "1",
+        "d0WakeupCharacters": "",
+        "d0SignOnMessage": "",
+        "d0BaudrateChangeoverOverwrite": "",
+        "protocolSmlIgnoreInvalidCRC": true,
+        "debugging": false,
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "0c8c7667a9a27ff3"
+            ]
+        ]
+    },
+    {
+        "id": "0c8c7667a9a27ff3",
+        "type": "function",
+        "z": "ac11782cb954b03e",
+        "name": "Parsin_04",
+        "func": "var timeRaw = msg.payload[\"0-0:1.0.0\"].values[0].value\nvar kokonaisKulutus = msg.payload[\"1-0:1.8.0\"].values[0].value\nvar kokonaisYlijaama = msg.payload[\"1-0:2.8.0\"].values[0].value\nvar kulutusTeho = msg.payload[\"1-0:1.7.0\"].values[0].value\nvar YlijaamaTeho = msg.payload[\"1-0:2.7.0\"].values[0].value\n\n// Parsitaan viestistä sen aikaleima, ongelmana on kesä/talviaika\n//timeTemp = timeRaw.slice(0,-1).match(/.{2}/g)\n//timeStamp = \"20\"+timeTemp[0]+\"-\"+timeTemp[1]+\"-\"+timeTemp[2]+\"T\"+timeTemp[3]+\":\"+timeTemp[4]+\":\"+timeTemp[5]\n\n\n\nmsg.payload = [{\n        kokonaisKulutus: kokonaisKulutus,\n    \tkokonaisYlijaama: kokonaisYlijaama,\n\t    kulutusTeho: kulutusTeho,\n\t    YlijaamaTeho: YlijaamaTeho,\n\t    // time: Date.parse(timeStamp)\n        time: Date.now() // Käytetään järjestelmän aikaa\n},\n{\n    deviceId:  global.get('USB4')|| 0\n    \n}];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 400,
+        "wires": [
+            [
+                "d8f0006b87719fe9",
+                "2652c828d8a82e2a"
+            ]
+        ]
+    },
+    {
+        "id": "ba3ce01fd2d404c8",
+        "type": "smartmeter",
+        "z": "ac11782cb954b03e",
+        "name": "USB5",
+        "datasource": "ba8b5547f323b2e9",
+        "protocol": "D0Protocol",
+        "transport": "SerialResponseTransport",
+        "requestInterval": "1",
+        "d0WakeupCharacters": "",
+        "d0SignOnMessage": "",
+        "d0BaudrateChangeoverOverwrite": "",
+        "protocolSmlIgnoreInvalidCRC": true,
+        "debugging": false,
+        "x": 180,
+        "y": 460,
+        "wires": [
+            [
+                "3e11215e8ce1f04b"
+            ]
+        ]
+    },
+    {
+        "id": "3e11215e8ce1f04b",
+        "type": "function",
+        "z": "ac11782cb954b03e",
+        "name": "Parsin_05",
+        "func": "var timeRaw = msg.payload[\"0-0:1.0.0\"].values[0].value\nvar kokonaisKulutus = msg.payload[\"1-0:1.8.0\"].values[0].value\nvar kokonaisYlijaama = msg.payload[\"1-0:2.8.0\"].values[0].value\nvar kulutusTeho = msg.payload[\"1-0:1.7.0\"].values[0].value\nvar YlijaamaTeho = msg.payload[\"1-0:2.7.0\"].values[0].value\n\n// Parsitaan viestistä sen aikaleima, ongelmana on kesä/talviaika\n//timeTemp = timeRaw.slice(0,-1).match(/.{2}/g)\n//timeStamp = \"20\"+timeTemp[0]+\"-\"+timeTemp[1]+\"-\"+timeTemp[2]+\"T\"+timeTemp[3]+\":\"+timeTemp[4]+\":\"+timeTemp[5]\n\n\n\nmsg.payload = [{\n        kokonaisKulutus: kokonaisKulutus,\n    \tkokonaisYlijaama: kokonaisYlijaama,\n\t    kulutusTeho: kulutusTeho,\n\t    YlijaamaTeho: YlijaamaTeho,\n\t    // time: Date.parse(timeStamp)\n        time: Date.now() // Käytetään järjestelmän aikaa\n},\n{\n    deviceId:  global.get('USB5')|| 0\n    \n}];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 460,
+        "wires": [
+            [
+                "d8f0006b87719fe9",
+                "2652c828d8a82e2a"
+            ]
+        ]
+    },
+    {
+        "id": "c4e7c7e9f841c34a",
+        "type": "inject",
+        "z": "ac11782cb954b03e",
+        "name": "Tunnukset SerialNro:sta ->",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 40,
+        "wires": [
+            [
+                "8200d14f361cb611"
+            ]
+        ]
+    },
+    {
+        "id": "8200d14f361cb611",
+        "type": "function",
+        "z": "ac11782cb954b03e",
+        "name": "Tunnukset",
+        "func": "var site = \"Tohmajarvi\"  // ei välttämättä tarvita\nglobal.set('site', site);// ei välttämättä tarvita\n// Serial nodessa perustettu lista usb-porteista ja niissä olevista sovittimien tunnuksista\n// tallennetaan paikalliseen taulukkoon, josta poimitaan oikeat tunnukset\nvar tunnukset=global.get('taulukko'); \nvar a=tunnukset[0];\nvar b=tunnukset[1];\nvar c=tunnukset[2];\nvar d=tunnukset[3];\nvar e=tunnukset[4];\nvar f=tunnukset[5];\nvar g=tunnukset[6];\n\n// sijoitetaan oikeat tunnukset muuttujiin joilla yksilöidään lähetettävät mittarilukemat\nglobal.set('USB0',a);\nglobal.set('USB1',b); \nglobal.set('USB2',c);\nglobal.set('USB3',d);\nglobal.set('USB4',e);\nglobal.set('USB5',f);\nglobal.set('USB6',g);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e77bf9c215406342",
+        "type": "function",
+        "z": "ac11782cb954b03e",
+        "name": "Parsin_06",
+        "func": "var timeRaw = msg.payload[\"0-0:1.0.0\"].values[0].value\nvar kokonaisKulutus = msg.payload[\"1-0:1.8.0\"].values[0].value\nvar kokonaisYlijaama = msg.payload[\"1-0:2.8.0\"].values[0].value\nvar kulutusTeho = msg.payload[\"1-0:1.7.0\"].values[0].value\nvar YlijaamaTeho = msg.payload[\"1-0:2.7.0\"].values[0].value\n\n// Parsitaan viestistä sen aikaleima, ongelmana on kesä/talviaika\n//timeTemp = timeRaw.slice(0,-1).match(/.{2}/g)\n//timeStamp = \"20\"+timeTemp[0]+\"-\"+timeTemp[1]+\"-\"+timeTemp[2]+\"T\"+timeTemp[3]+\":\"+timeTemp[4]+\":\"+timeTemp[5]\n\n\n\nmsg.payload = [{\n        kokonaisKulutus: kokonaisKulutus,\n    \tkokonaisYlijaama: kokonaisYlijaama,\n\t    kulutusTeho: kulutusTeho,\n\t    YlijaamaTeho: YlijaamaTeho,\n\t    // time: Date.parse(timeStamp)\n        time: Date.now() // Käytetään järjestelmän aikaa\n},\n{\n    deviceId: global.get('USB6')|| 0\n    \n}];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 520,
+        "wires": [
+            [
+                "d8f0006b87719fe9",
+                "2652c828d8a82e2a"
+            ]
+        ]
+    },
+    {
+        "id": "ae7325dcdafdc167",
+        "type": "comment",
+        "z": "ac11782cb954b03e",
+        "name": "Tunnusten sijoitukset muuttujiin",
+        "info": "",
+        "x": 650,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "01d0f66b55eb7de6",
+        "type": "comment",
+        "z": "ac11782cb954b03e",
+        "name": "Sarjaporttien datan parsiminen ja lähettäminen:",
+        "info": "",
+        "x": 260,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "54a8e1c48cb7eec9",
+        "type": "smartmeter",
+        "z": "ac11782cb954b03e",
+        "name": "USB6",
+        "datasource": "2595815b99126245",
+        "protocol": "D0Protocol",
+        "transport": "SerialResponseTransport",
+        "requestInterval": "1",
+        "d0WakeupCharacters": "",
+        "d0SignOnMessage": "",
+        "d0BaudrateChangeoverOverwrite": "",
+        "protocolSmlIgnoreInvalidCRC": true,
+        "debugging": false,
+        "x": 180,
+        "y": 520,
+        "wires": [
+            [
+                "e77bf9c215406342"
+            ]
+        ]
+    },
+    {
+        "id": "ed06ba1d64148e10",
+        "type": "inject",
+        "z": "f4b26b40125d503e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1800",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "anturit",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "ba233d35578c1cc1"
+            ]
+        ]
+    },
+    {
+        "id": "42e1b9bd0b0997ae",
+        "type": "debug",
+        "z": "f4b26b40125d503e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "72604bd756bfb7cb",
+        "type": "switch",
+        "z": "f4b26b40125d503e",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "FTDI_FT232R",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "dd8ff8daf2430c40"
+            ]
+        ]
+    },
+    {
+        "id": "0cf3f352726586be",
+        "type": "function",
+        "z": "f4b26b40125d503e",
+        "name": "",
+        "func": "\nvar tunnukset=msg.payload.split(\",\");\nmsg.payload=tunnukset;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 240,
+        "wires": [
+            [
+                "b881f21537b4c77a"
+            ]
+        ]
+    },
+    {
+        "id": "b881f21537b4c77a",
+        "type": "json",
+        "z": "f4b26b40125d503e",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "46ccf8493876c159"
+            ]
+        ]
+    },
+    {
+        "id": "fd0e5ff7cd102edc",
+        "type": "comment",
+        "z": "f4b26b40125d503e",
+        "name": "Tunnuksen sisätävät rivit eteenpäin yksittäisinä viesteinä",
+        "info": "",
+        "x": 680,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "8bf68a956187b61a",
+        "type": "comment",
+        "z": "f4b26b40125d503e",
+        "name": "Siivotaan ylimääräiset merkit pois",
+        "info": "",
+        "x": 750,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4fa9850cf1477609",
+        "type": "comment",
+        "z": "f4b26b40125d503e",
+        "name": "parsin, \" , \"",
+        "info": "",
+        "x": 820,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "2dc14b8b392acf49",
+        "type": "comment",
+        "z": "f4b26b40125d503e",
+        "name": "Objektiksi",
+        "info": "",
+        "x": 820,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "46ccf8493876c159",
+        "type": "function",
+        "z": "f4b26b40125d503e",
+        "name": "Tunnukset globaaliin taulukkoon",
+        "func": "// Yksittäisen viestin mukana saapuu yksilöivä tunnus ja usb-portin numero\n// Nämä tallennetaan jokainen globaaliin taulukkoon josta arvot poimitaan DSMR-flow:ssa\n\nvar tunnus=msg.payload[0];  // DSMR sovittimen yksilöivä tunnus\nvar portti=msg.payload[1];  // Viestissä tulee porttit muodossa 0-6 (USB0=0 jne)\nvar solu=parseInt(portti);  // Käsiteltävän solun indeksi\n\nvar taulukko=global.get('taulukko')||[];    //haetaan globaalitaulukko paikalliseksi\n//taulukko=[11,22,33,44,55,66,77]; // tätä riviä käytetty debuggauksessa...\n\ntaulukko[solu]=tunnus;  // sijoitetaan tunnus taulukkoon\n// -> taulukko[0]=USB0:n tunnus, taulukko[1]=USB1:n tunnus\n\nglobal.set('taulukko',taulukko);    // sijoitetaan paikallinen taulukko globaaliin\n\nmsg.payload=global.get('taulukko');\nreturn msg; ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 340,
+        "wires": [
+            [
+                "42e1b9bd0b0997ae"
+            ]
+        ]
+    },
+    {
+        "id": "988542aed88d97c6",
+        "type": "comment",
+        "z": "f4b26b40125d503e",
+        "name": "Haetaan usb-portteihin liitettyjen serial-laitteiden tiedot, poimitaan yksilöivät tunnukset ja portin numerot",
+        "info": "",
+        "x": 390,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ba233d35578c1cc1",
+        "type": "exec queue",
+        "z": "f4b26b40125d503e",
+        "name": "Luetaan tiedot hakemistosta",
+        "currentLine": {
+            "row": 3,
+            "column": 79
+        },
+        "command": "ls -la /dev/serial/by-id/",
+        "debugMode": false,
+        "outputs": 1,
+        "useSpawn": "false",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "javascript",
+        "template": "console.log(`\n{\n\t\"value\": \"exec queue\",\n\t\"purpose\":\"putting the ideas from the exec, template and queue nodes together\"\n}\n`)",
+        "output": "str",
+        "outputEmpty": false,
+        "vimMode": false,
+        "queue": "1",
+        "addpayCB": false,
+        "splitLine": true,
+        "cleanQueue": true,
+        "x": 380,
+        "y": 100,
+        "wires": [
+            [
+                "72604bd756bfb7cb"
+            ]
+        ]
+    },
+    {
+        "id": "dd8ff8daf2430c40",
+        "type": "string",
+        "z": "f4b26b40125d503e",
+        "name": "",
+        "methods": [
+            {
+                "name": "delLeftMost",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "usb-"
+                    }
+                ]
+            },
+            {
+                "name": "getRightMost",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "UART_"
+                    }
+                ]
+            },
+            {
+                "name": "append",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "\\n"
+                    }
+                ]
+            },
+            {
+                "name": "trim",
+                "params": []
+            },
+            {
+                "name": "replaceAll",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "-if00-port0 -> ../../ttyUSB"
+                    },
+                    {
+                        "type": "str",
+                        "value": ","
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 290,
+        "y": 200,
+        "wires": [
+            [
+                "0cf3f352726586be"
+            ]
+        ]
+    },
+    {
+        "id": "b9be38d56b940fb8",
+        "type": "function",
+        "z": "817c0e95d6ca5770",
+        "name": "parse http",
+        "func": "\nvar TuotantoYhteensä = parseInt(msg.payload[17].replace(/([^A-Z0-9]+)/gi, '')); // Kumulatiivinen tuotanto kWh\nvar vaihe1 = parseInt(msg.payload[68].replace(/([^a-z0-9]+)/gi, ''));   // vaiheen 1 teho\nvar vaihe2 = parseInt(msg.payload[94].replace(/([^a-z0-9]+)/gi, ''));\nvar vaihe3 = parseInt(msg.payload[120].replace(/([^a-z0-9]+)/gi, ''));\nvar TuotantoTeho=vaihe1+vaihe2+vaihe3;                              // hetkellinen tuotantoteho W\n\nif (Number.isNaN(TuotantoYhteensä) === true){                               // varmistetaan että on numero\n    TuotantoYhteensä = -1;\n}\nmsg.payload = [{\n    TuotantoYhteensä : TuotantoYhteensä,\n    TuotantoTeho: TuotantoTeho\n},\n{\n    deviceId: 1\n}];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 120,
+        "wires": [
+            [
+                "e7a81e33edc1eeee",
+                "55d856b4ae42501d"
+            ]
+        ]
+    },
+    {
+        "id": "d435e4d330bf3db2",
+        "type": "http request",
+        "z": "817c0e95d6ca5770",
+        "name": "kostal",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.1.51/index.fhtml",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "basic",
+        "senderr": false,
+        "x": 290,
+        "y": 120,
+        "wires": [
+            [
+                "e2fc521447d5dde9"
+            ]
+        ]
+    },
+    {
+        "id": "e2fc521447d5dde9",
+        "type": "html",
+        "z": "817c0e95d6ca5770",
+        "name": "",
+        "property": "payload",
+        "outproperty": "payload",
+        "tag": "td",
+        "ret": "text",
+        "as": "single",
+        "x": 440,
+        "y": 120,
+        "wires": [
+            [
+                "b9be38d56b940fb8"
+            ]
+        ]
+    },
+    {
+        "id": "2cbaf845c1e9573f",
+        "type": "inject",
+        "z": "817c0e95d6ca5770",
+        "name": "5 sec",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "d435e4d330bf3db2"
+            ]
+        ]
+    },
+    {
+        "id": "e7a81e33edc1eeee",
+        "type": "debug",
+        "z": "817c0e95d6ca5770",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "55d856b4ae42501d",
+        "type": "influxdb out",
+        "z": "817c0e95d6ca5770",
+        "influxdb": "",
+        "name": "Kostal Influxiin",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 800,
+        "y": 160,
+        "wires": []
+    }
+]
