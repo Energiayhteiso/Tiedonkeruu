@@ -12,6 +12,7 @@ Tiedot lähetetään InfluxDB tietokantaan, sekä tallennetaan paikallisesti.
 - Janne Laakkonen
 - Joni Voutilainen
 - Satu Kautto
+- Karelia-amk
 
 
 # Riippuvuudet
